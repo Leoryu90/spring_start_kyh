@@ -1,4 +1,4 @@
-package repository;
+package hello.hello_demo.repository;
 
 import hello.hello_demo.domain.Member;
 import hello.hello_demo.repository.MemoryMemberRepository;
