@@ -1,6 +1,5 @@
 package hello.hello_demo.domain;
 
-
 public class Member {
 
     public Long id;
