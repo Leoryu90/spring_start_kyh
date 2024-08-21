@@ -1,10 +1,8 @@
 package hello.hello_demo;
 
-import hello.hello_demo.repository.JdbcMemberRepository;
-import hello.hello_demo.repository.JdbcTemplateMemberRepository;
-import hello.hello_demo.repository.MemberRepository;
-import hello.hello_demo.repository.MemoryMemberRepository;
+import hello.hello_demo.repository.*;
 import hello.hello_demo.service.MemberService;
+import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,22 +12,43 @@ import javax.sql.DataSource;
 @Configuration
 public class SpringConfig {
 
-    private DataSource dataSource;
+
+    private MemberRepository memberRepository;
 
     @Autowired
-    public SpringConfig(DataSource dataSource) {
-        this.dataSource = dataSource;
+    public SpringConfig(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
     }
 
     @Bean
     public MemberService memberService() {
-        return new MemberService(memberRepository());
+        return new MemberService(memberRepository);
     }
 
-    @Bean
+    /*@Bean
     public MemberRepository memberRepository() {
 //        return new MemoryMemberRepository();
 //        return new JdbcMemberRepository(dataSource);
-        return new JdbcTemplateMemberRepository(dataSource);
-    }
+//        return new JdbcTemplateMemberRepository(dataSource);
+        return new JpaMemberRepository(em);
+    }*/
 }
+
+
+
+    // Jpa
+    /*private EntityManager em;
+
+    @Autowired
+    public SpringConfig(EntityManager em) {
+        this.em = em;
+    }*/
+
+
+    //Jdbc
+    /*private DataSource dataSource;
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }*/
