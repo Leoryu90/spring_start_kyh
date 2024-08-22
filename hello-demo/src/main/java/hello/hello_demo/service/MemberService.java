@@ -22,11 +22,13 @@ public class MemberService {
      * 회원 가입
      * */
     public Long join(Member member) {
-        //같은 이름 중복 확인
-        validatrDuplicateMember(member);
 
-        memberRepository.save(member);
-        return member.getId();
+            //같은 이름 중복 확인
+            validatrDuplicateMember(member);
+
+            memberRepository.save(member);
+            return member.getId();
+
     }
 
 
@@ -48,3 +50,21 @@ public class MemberService {
         return memberRepository.findById(memberId);
     }
 }
+
+
+
+/*
+// 시간측정하는 틀
+long start = System.currentTimeMillis();
+
+        try {
+//같은 이름 중복 확인
+validatrDuplicateMember(member);
+
+            memberRepository.save(member);
+            return member.getId();
+        } finally {
+long finish = System.currentTimeMillis();
+long time = finish - start;
+            System.out.println("join 의 걸린 시간 = " + time + "ms");
+        }*/
